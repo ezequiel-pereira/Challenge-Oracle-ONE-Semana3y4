@@ -10,12 +10,6 @@ function crearCanvas() {
   ctx = tablero.getContext('2d');
 }
 
-function dibujarGuiones(length, x, y) {
-  let guiones = Array(length);
-  guiones.fill('_');
-  dibujarLetras(guiones, x, y);
-}
-
 function dibujarLetras(letras, x, y) {
   ctx.fillStyle = 'white';
   ctx.fillRect(x, (y-50), 600, 60);

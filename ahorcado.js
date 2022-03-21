@@ -1,15 +1,18 @@
 var botonIniciar = document.getElementById('iniciar-juego');
-var palabras = ['COMPUTADDORA', 'BOTELLA', 'CELULAR', 'ALCOHOL', 'DESTORNILLADOR'];
+var palabras = ['COMPUTADORA', 'BOTELLA', 'CELULAR', 'ALCOHOL', 'DESTORNILLADOR'];
+var palabra = '';
+var letrasCorrectas= [];
 
 function iniciarJuego(event) {
   event.preventDefault();
   document.getElementById('iniciar-juego-div').remove();
   document.getElementById('agregar-palabra-div').remove();
   crearCanvas();
-  var palabra = elegirPalabra(palabras);
+  palabra = elegirPalabra(palabras);
   palabra = palabra.split('');
-  dibujarGuiones(palabra.length, 300, 450);
-  document.onkeydown = validarLetra;
+  letrasCorrectas = Array(palabra.length).fill('_');
+  dibujarLetras(letrasCorrectas, 300, 450);
+  document.onkeypress = validarLetraIngresada;
 }
 
 botonIniciar.addEventListener('click', iniciarJuego);
@@ -20,12 +23,13 @@ function elegirPalabra(palabras) {
 }
 
 function validarLetraIngresada(event) {
-  let letra = event.key;
+  let letra = event;
   let esUnaLetraMayuscula  = new RegExp('[A-Z]');
   if (letra.length === 1 && esUnaLetraMayuscula.test(letra)) {
     console.log(letra + ' es una letra mayúscula');
+    return true;
   } else {
     console.log(letra + ' no es una letra mayúscula');
+    return false;
   }
 }
-
