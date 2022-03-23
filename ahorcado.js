@@ -44,7 +44,7 @@ function juego(event) {
   if (letraCorrecta(letra)) {
     dibujarLetras(letrasCorrectas, 700, 500, true);
     verificarGanador();
-  } else {
+  } else if (!letrasIncorrectas.includes(letra)) {
     letrasIncorrectas.push(letra);
     dibujarLetras(letrasIncorrectas, 700, 200, false);
     errores++;
