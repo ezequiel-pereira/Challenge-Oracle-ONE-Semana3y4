@@ -19,7 +19,7 @@ function iniciarJuego(event) {
   palabra = elegirPalabra(palabras);
   palabra = palabra.split("");
   letrasCorrectas = Array(palabra.length).fill("_");
-  dibujarLetras(letrasCorrectas, 800, 500, true);
+  dibujarLetras(letrasCorrectas, 700, 500, true);
   dibujarHorca();
   document.onkeypress = juego;
 }
@@ -29,11 +29,10 @@ botonIniciar.addEventListener("click", iniciarJuego);
 function juego(event) {
   let letra = event.key;
 
-  if (errores < 6) {
+  if (errores < 5) {
     console.log("Errores: " + errores);
   } else {
-    console.log("Errores: " + errores);
-    return false;
+    dibujarFinDelJuego(700, 100, false);
   }
 
   if (validarLetraIngresada(letra)) {
@@ -43,10 +42,11 @@ function juego(event) {
   }
 
   if (letraCorrecta(letra)) {
-    dibujarLetras(letrasCorrectas, 600, 450, true);
+    dibujarLetras(letrasCorrectas, 700, 500, true);
+    verificarGanador();
   } else {
     letrasIncorrectas.push(letra);
-    dibujarLetras(letrasIncorrectas, 800, 200, false);
+    dibujarLetras(letrasIncorrectas, 700, 200, false);
     errores++;
     dibujarAhorcado(errores);
   }
@@ -61,10 +61,8 @@ function validarLetraIngresada(event) {
   let letra = event;
   let esUnaLetraMayuscula = new RegExp("[A-Z]");
   if (letra.length === 1 && esUnaLetraMayuscula.test(letra)) {
-    console.log(letra + " es una letra mayúscula");
     return true;
   } else {
-    console.log(letra + " no es una letra mayúscula");
     return false;
   }
 }
@@ -79,5 +77,11 @@ function letraCorrecta(letra) {
   });
   if (aciertos >= 1) {
     return true;
+  }
+}
+
+function verificarGanador() {
+  if (palabra.toString() === letrasCorrectas.toString()) {
+    dibujarFinDelJuego(700, 100, true);
   }
 }

@@ -103,3 +103,15 @@ function dibujarBrazoDerecho() {
   ctx.lineTo(580, 150);
   ctx.stroke();
 }
+
+function dibujarFinDelJuego(x, y, ganador) {
+  ctx.font = "48px serif";
+
+  if (ganador) {
+    ctx.fillStyle = "green";
+    ctx.fillText("¡Ganaste, Felicidades!", x, y);
+  } else {
+    ctx.fillStyle = "red";
+    ctx.fillText("¡Fin del juego!", x, y);
+  }
+}
