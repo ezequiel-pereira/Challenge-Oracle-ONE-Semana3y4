@@ -1,17 +1,11 @@
 var botonIniciar = document.getElementById("iniciar-juego");
-var palabras = [
-  "COMPUTADORA",
-  "BOTELLA",
-  "CELULAR",
-  "ALCOHOL",
-  "DESTORNILLADOR",
-];
 var palabra = "";
 var errores = 0;
 var letrasCorrectas = [];
 var letrasIncorrectas = [];
 
 function iniciarJuego(event) {
+  console.log(palabras);
   event.preventDefault();
   document.getElementById("iniciar-juego-div").remove();
   document.getElementById("agregar-palabra-div").remove();
