@@ -5,7 +5,6 @@ var letrasCorrectas = [];
 var letrasIncorrectas = [];
 
 function iniciarJuego(event) {
-  console.log(palabras);
   event.preventDefault();
   document.getElementById("iniciar-juego-div").remove();
   document.getElementById("agregar-palabra-div").remove();
@@ -27,6 +26,7 @@ function juego(event) {
     console.log("Errores: " + errores);
   } else {
     dibujarFinDelJuego(700, 100, false);
+    setTimeout(recargar, 3000);
   }
 
   if (validarLetraIngresada(letra)) {
@@ -77,5 +77,10 @@ function letraCorrecta(letra) {
 function verificarGanador() {
   if (palabra.toString() === letrasCorrectas.toString()) {
     dibujarFinDelJuego(700, 100, true);
+    setTimeout(recargar, 3000);
   }
+}
+
+function recargar() {
+  location.reload();
 }
